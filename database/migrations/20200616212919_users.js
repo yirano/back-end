@@ -24,7 +24,7 @@ return knex.schema
 .createTable('stories_photos', pair => {
   pair.increments();
   pair
-    .string('story_id', 50)
+    .integer('story_id')
     .unsigned()
     .notNullable()
     .references('id')
@@ -52,7 +52,7 @@ return knex.schema
 .createTable('users_stories', pair => {
   pair.increments();
   pair
-    .string('story_id', 50)
+    .integer('story_id', 50)
     .unsigned()
     .notNullable()
     .references('id')
