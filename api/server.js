@@ -14,9 +14,9 @@ const server = express();
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
-server.use('/api/auth', authRouter);
-server.use('/api/users', authenticate, usersRouter);
-server.use('/api/stories', authenticate, storiesRouter);
-server.use('/api/pictures', authenticate, picturesRouter);
+// server.use('/api/auth', authRouter);
+// server.use('/api/users', authenticate, usersRouter);
+// server.use('/api/stories', authenticate, storiesRouter);
+// server.use('/api/pictures', authenticate, picturesRouter);
 
 module.exports = server;
