@@ -18,7 +18,7 @@ return knex.schema
     .string('story_name', 50)
     .notNullable();
   stories
-    .string('story _description');
+    .string('story_description');
 
 })
 .createTable('stories_photos', pair => {
