@@ -70,6 +70,11 @@ return knex.schema
 })
 };
 
-exports.down = function(knex, Promise) {
-return knex.schema.dropTableIfExists('users');
+exports.down = function(knex) {
+  return knex.schema
+    .dropTableIfExists('users_stories')
+    .dropTableIfExists('users')
+    .dropTableIfExists('stories_photos')
+    .dropTableIfExists('stories')
+    .dropTableIfExists('photos');
 };
