@@ -1,16 +1,8 @@
 const router = require('express').Router();
 
 const Photos = require('./photos-model.js');
+const Stories = require('../stories/stories-model.js');
 
-router.get('/', (req, res) => {
-    Photos.find()
-        .then(photos => {
-            res.status(200).json(photos);
-        })
-        .catch(error => {
-            res.send(error)
-        })
-});
 
 router.get('/:id', (req, res) => {
     const {id} = req.params;
