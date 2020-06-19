@@ -5,6 +5,7 @@ module.exports = {
   update,
   remove,
   findStories,
+  findBy,
   findById
 }
 
@@ -13,6 +14,10 @@ function findStories (id){
   return db('stories')
     .where({user_id: id});
 
+}
+
+function findBy(filter) {
+  return db("users").where(filter).orderBy("id");
 }
 
 function findById(id) {

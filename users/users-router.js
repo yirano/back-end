@@ -19,7 +19,21 @@ router.get('/:id/stories', (req, res) => {
         })
 })
 
-//delete user
+router.delete('/:id', (req,res) => {
+    const {id} = req.params;
+
+    Users.remove(id) 
+        .then(deleted => {
+            if (deleted) {
+                res.json({message: "deleted user"})
+            } else {
+                res.status(404).json({message: "Could not find user with given id"})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({message: "Failed to delete user"})
+        })
+});
 
 
 module.exports = router;
