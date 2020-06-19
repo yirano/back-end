@@ -1,8 +1,6 @@
 const router = require('express').Router();
 
 const Users = require('./users-model.js');
-const { restart } = require('nodemon');
-
 
 router.get('/:id/stories', (req, res) => {
     const { id } = req.params;
@@ -18,6 +16,18 @@ router.get('/:id/stories', (req, res) => {
             res.status(500).json({message: "Failed to get stories"})
         })
 })
+
+router.post('/:id/stories', (req, res) => {
+    const storyInfo = req.body;
+
+    Users.addStory(storyInfo)
+        .then(story => {
+            res.status(201).json(story);
+        })
+        .catch(error => {
+            res.status(500).json({message: "Failed to add new story"})
+        })
+});
 
 router.delete('/:id', (req,res) => {
     const {id} = req.params;

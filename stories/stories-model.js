@@ -5,13 +5,14 @@ module.exports = {
   update,
   remove,
   findById,
-  findPhotos
+  findPhotos,
+  addPhoto
 }
 
 
 function findPhotos (id){
   return db('photos')
-    .where({stories_id: id});
+    .where({story_id: id});
 
 }
 function findById(id) {

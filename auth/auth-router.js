@@ -55,7 +55,7 @@ function generateToken(user) {
         username: user.username,
     };
 
-    const option = {
+    const options = {
         expiresIn: "1d"
     };
 

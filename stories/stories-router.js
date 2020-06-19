@@ -34,32 +34,14 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
-    const storyInfo = req.body;
-
-    Stories.add(storyInfo)
-        .then(story => {
-            res.status(201).json(story);
-        })
-        .catch(error => {
-            res.status(500).json({message: "Failed to add new story"})
-        })
-});
-
 router.post('/:id/photos', (req, res) => {
     const photoInfo = req.body;
     const { id } = req.params;
+    photoInfo.story_id = id;
 
-    Stories.findPhotos(id)
+    Stories.addPhoto(photoInfo)
         .then(photo => {
-            if (photo.length) {
-                Stories.add(photoInfo, id)
-                    .then(photo => {
-                        res.status(201).json(photo);
-                    })
-            } else {
-                res.status(404).json({message: "Could not find story with given id"})
-            }
+            res.status(201).json(photo);
         })
         .catch(error => {
             res.status(500).json({message: "Failed to add photo"});

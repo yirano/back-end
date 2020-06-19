@@ -6,7 +6,8 @@ module.exports = {
   remove,
   findStories,
   findBy,
-  findById
+  findById,
+  addStory
 }
 
 
