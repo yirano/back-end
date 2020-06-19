@@ -13,6 +13,12 @@ function findStories (id){
 
 }
 
+function findById(id) {
+  return db('users')
+    .where({id})
+    .first();
+}
+
 function add(userData){
   return db('users')
     .insert(userData);
