@@ -20,3 +20,9 @@ These are our current endpoints:
 
 ### Entities
 example of what a post to `/api/stories/:id/photos` would expect
+
+example of what a post to `/api/stories` would expect
+
+example of what a post to `/api/stories/:id/photos` would expect
+
+example of what a post to `/api/stories/:id/photos` would expect

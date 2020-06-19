@@ -26,6 +26,11 @@ function findById(id) {
     .first();
 }
 
+function addStory(storyData){
+  return db('stories')
+    .insert(storyData);
+}
+
 async function add(user) {
   try {
     const [id] = await db("users").insert(user, "id");

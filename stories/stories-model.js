@@ -23,6 +23,11 @@ function add(storyData){
     .insert(storyData);
 }
 
+function addPhoto(photoData){
+  return db('photos')
+    .insert(photoData);
+}
+
 function update(changes, id){
   return db('stories')
     .where({id})
