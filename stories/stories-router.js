@@ -12,6 +12,22 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/:id/photos', (req, res) => {
+    const {id} = req.params;
+
+    Stories.findPhotos(id)
+        .then(photos=> {
+            if(photos.length) {
+                res.status(201).json(photos)
+            } else {
+                res.status(404).json({message: "Could not retrieve photos"})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({message: "Failed to get photos"})
+        })
+})
+
 router.get('/:id', (req, res) => {
     const {id} = req.params;
 
@@ -37,6 +53,26 @@ router.post('/', (req, res) => {
         })
         .catch(error => {
             res.status(500).json({message: "Failed to add new story"})
+        })
+});
+
+router.post('/:id/photos', (req, res) => {
+    const photoInfo = req.body;
+    const { id } = req.params;
+
+    Stories.findBy(id)
+        .then(photo => {
+            if (photo.length) {
+                Stories.addPhoto(photoInfo, id)
+                    .then(photo => {
+                        res.status(201).json(photo);
+                    })
+            } else {
+                res.status(404).json({message: "Could not find story with given id"})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({message: "Failed to add photo"});
         })
 });
 
