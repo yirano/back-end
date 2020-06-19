@@ -26,9 +26,15 @@ function findById(id) {
     .first();
 }
 
-function add(userData){
-  return db('users')
-    .insert(userData);
+async function add(user) {
+  try {
+    const [id] = await db("users").insert(user, "id");
+
+    return findById(id);
+  }
+  catch (error) {
+    throw error;
+  }
 }
 
 function update(changes, id){
