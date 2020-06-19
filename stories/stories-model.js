@@ -3,7 +3,8 @@ const db = require('../database/knex-setup.js');
 module.exports = {
   add,
   update,
-  remove
+  remove,
+  findPhotos
 }
 
 

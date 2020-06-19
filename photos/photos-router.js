@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
 const Photos = require('./photos-model.js');
-const Stories = require('../stories/stories-model.js');
 
 
 router.get('/:id', (req, res) => {

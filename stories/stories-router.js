@@ -2,16 +2,6 @@ const router = require('express').Router();
 
 const Stories = require('./stories-model.js');
 
-router.get('/', (req, res) => {
-    Stories.find()
-        .then(stories => {
-            res.status(200).json(stories);
-        })
-        .catch(error => {
-            res.send(error)
-        })
-});
-
 router.get('/:id/photos', (req, res) => {
     const {id} = req.params;
 
@@ -60,10 +50,10 @@ router.post('/:id/photos', (req, res) => {
     const photoInfo = req.body;
     const { id } = req.params;
 
-    Stories.findBy(id)
+    Stories.findPhotos(id)
         .then(photo => {
             if (photo.length) {
-                Stories.addPhoto(photoInfo, id)
+                Stories.add(photoInfo, id)
                     .then(photo => {
                         res.status(201).json(photo);
                     })
