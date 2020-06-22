@@ -19,4 +19,8 @@ server.use('/api/users', authenticate, usersRouter);
 server.use('/api/stories', authenticate, storiesRouter);
 server.use('/api/photos', authenticate, photosRouter);
 
+server.get('/', (req, res) => {
+    res.status(200).json({api: "Up and running!"})
+});
+
 module.exports = server;
