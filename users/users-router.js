@@ -19,6 +19,8 @@ router.get('/:id/stories', (req, res) => {
 
 router.post('/:id/stories', (req, res) => {
     const storyInfo = req.body;
+    storyInfo.user_id = req.params;
+    // storyInfo.date = Date.now()
 
     Users.addStory(storyInfo)
         .then(story => {

@@ -1,5 +1,30 @@
 exports.up = function(knex) {
 return knex.schema
+.createTable('users', users => {
+  users.increments();
+  users
+    .string('username', 255)
+    .notNullable()
+    .unique();
+  users.string('password', 255)
+    .notNullable();
+})
+
+.createTable('stories', stories => {
+  stories.increments();
+  stories
+    .string('story_name', 50)
+    .notNullable();
+  stories
+    .string('story_description')
+  stories
+    .integer('user_id')
+    .references('id')
+    .inTable('user')
+    .onUpdate('CASCADE')
+    .onDelete('CASCADE');
+})
+
 .createTable('photos', photos => {
   photos.increments();
   photos
@@ -17,35 +42,12 @@ return knex.schema
     .onUpdate('CASCADE')
     .onDelete('CASCADE');
 
-})
-.createTable('stories', stories => {
-  stories.increments();
-  stories
-    .string('story_name', 50)
-    .notNullable();
-  stories
-    .string('story_description')
-  stories
-    .integer('user_id')
-    .references('id')
-    .inTable('user')
-    .onUpdate('CASCADE')
-    .onDelete('CASCADE');
-
-})
-.createTable('users', users => {
-  users.increments();
-  users
-    .string('username', 255)
-    .notNullable()
-    .unique();
-  users.string('password', 255)
-    .notNullable();
 })};
+
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('users')
+    .dropTableIfExists('photos')
     .dropTableIfExists('stories')
-    .dropTableIfExists('photos');
+    .dropTableIfExists('users');
 };

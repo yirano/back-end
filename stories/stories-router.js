@@ -36,8 +36,8 @@ router.get('/:id', (req, res) => {
 
 router.post('/:id/photos', (req, res) => {
     const photoInfo = req.body;
-    const { id } = req.params;
-    photoInfo.story_id = id;
+    photoInfo.story_id = req.params;
+    // photoInfo.date = Date.now();
 
     Stories.addPhoto(photoInfo)
         .then(photo => {
