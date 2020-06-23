@@ -20,7 +20,7 @@ return knex.schema
   stories
     .integer('user_id')
     .references('id')
-    .inTable('user')
+    .inTable('users')
     .onUpdate('CASCADE')
     .onDelete('CASCADE');
 })
