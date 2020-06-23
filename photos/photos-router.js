@@ -11,7 +11,7 @@ router.get('/:id', (req, res) => {
             if (photo) {
                 res.status(200).json(photo);
             } else {
-                res.status(404).json({message: "Could not retrieve photo with give id"})
+                res.status(404).json({message: "Could not retrieve photo with given id"})
             }
         })
         .catch(error => {
@@ -54,7 +54,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req,res) => {
     const {id} = req.params;
 
-    Photos.remove(id) 
+    Photos.remove(id)
         .then(deleted => {
             if (deleted) {
                 res.json({message: "deleted photo"})
