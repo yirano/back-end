@@ -53,7 +53,7 @@ router.put('/:id', (req, res) => {
     const storyUpdates = req.body;
     const {id} = req.params;
 
-    Stories.findBy(id)
+    Stories.findById(id)
         .then(story => {
             if(story) {
                 Stories.update(storyUpdates, id)

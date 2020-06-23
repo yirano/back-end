@@ -35,7 +35,7 @@ router.put('/:id', (req, res) => {
     const photoUpdates = req.body;
     const {id} = req.params;
 
-    Photos.findBy(id)
+    Photos.findById(id)
         .then(photo => {
             if(photo) {
                 Photos.update(photoUpdates, id)
