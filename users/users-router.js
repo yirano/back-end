@@ -2,6 +2,16 @@ const router = require('express').Router();
 
 const Users = require('./users-model.js');
 
+router.get('/', (req, res) => {
+    Users.find()
+        .then(users => {
+            res.status(200).json(users);
+        })
+        .catch(error => {
+            res.send(error);
+        })
+});
+
 router.get('/:id/stories', (req, res) => {
     const { id } = req.params;
     Users.findStories(id) 

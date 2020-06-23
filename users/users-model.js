@@ -7,8 +7,13 @@ module.exports = {
   findStories,
   findBy,
   findById,
-  addStory
+  addStory,
+  find
 }
+
+function find() {
+  return db('users').select('id', 'username').orderBy('id');
+};
 
 
 function findStories (id){
