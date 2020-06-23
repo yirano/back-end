@@ -19,20 +19,19 @@ router.get('/:id/photos', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    const {id} = req.params;
-
-    Stories.findBy(id)
-        .then(story => {
-            if (story) {
-                res.status(200).json(story);
-            } else {
-                res.status(404).json({message: "Could not retrieve story with given id"})
-            }
-        })
-        .catch(error => {
-            res.status(500).json({message: "Failed to get story"})
-        })
-});
+    const { id } = req.params;
+    Stories.findById(id).then(story =>{
+      Stories.findPhotos(id)
+          .then(photos => {
+              if (photos.length) {
+                  user.photos = photos;
+                  res.status(201).json(story);
+              } else {
+                  res.status(404).json({message: "Could not retrieve"})
+              }
+          })
+    })
+  })
 
 router.post('/:id/photos', (req, res) => {
     const photoInfo = req.body;

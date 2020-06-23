@@ -15,7 +15,22 @@ router.get('/:id/stories', (req, res) => {
         .catch(error => {
             res.status(500).json({message: "Failed to get stories"})
         })
-})
+});
+
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    Users.findById(id).then(user =>{
+      Users.findStories(id)
+          .then(stories => {
+              if (stories.length) {
+                  user.stories = stories;
+                  res.status(201).json(user);
+              } else {
+                  res.status(404).json({message: "Could not retrieve"})
+              }
+          })
+    })
+});
 
 router.post('/:id/stories', (req, res) => {
     const storyInfo = req.body;
