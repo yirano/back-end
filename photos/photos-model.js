@@ -4,9 +4,12 @@ module.exports = {
   add,
   update,
   remove,
-  findById
+  findById,
+  find
 }
-
+function find() {
+  return db('users').select('id', 'username').orderBy('id');
+};
 
 function add(photoData){
   return db('photos')
@@ -20,7 +23,7 @@ function update(changes, id){
 
 }
 function findById(id) {
-  return db("photos").where( id ).first();
+  return db("photos").where( {id} ).first();
 }
 
 function remove(id){
