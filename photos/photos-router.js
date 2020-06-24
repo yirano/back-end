@@ -2,16 +2,26 @@ const router = require('express').Router();
 
 const Photos = require('./photos-model.js');
 
+router.get('/', (req, res) => {
+    Photos.find()
+        .then(photos => {
+            res.status(200).json(photos);
+        })
+        .catch(error => {
+            res.send(error);
+        })
+});
+
 
 router.get('/:id', (req, res) => {
-    const {id} = req.params;
+    const  { id } = req.params;
 
-    Photos.findBy(id)
+    Photos.findById(id)
         .then(photo => {
             if (photo) {
                 res.status(200).json(photo);
             } else {
-                res.status(404).json({message: "Could not retrieve photo with give id"})
+                res.status(404).json({message: "Could not retrieve photo with given id"})
             }
         })
         .catch(error => {
@@ -54,7 +64,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req,res) => {
     const {id} = req.params;
 
-    Photos.remove(id) 
+    Photos.remove(id)
         .then(deleted => {
             if (deleted) {
                 res.json({message: "deleted photo"})
