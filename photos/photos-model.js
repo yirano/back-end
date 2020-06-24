@@ -20,7 +20,7 @@ function update(changes, id){
 
 }
 function findById(id) {
-  return db("photos").where({ id }).first();
+  return db("photos").where( id ).first();
 }
 
 function remove(id){

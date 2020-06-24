@@ -6,7 +6,7 @@ const Photos = require('./photos-model.js');
 router.get('/:id', (req, res) => {
     const {id} = req.params;
 
-    Photos.findBy(id)
+    Photos.findById(id)
         .then(photo => {
             if (photo) {
                 res.status(200).json(photo);
